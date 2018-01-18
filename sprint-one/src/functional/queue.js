@@ -1,6 +1,7 @@
 var Queue = function() {
   var size = 0;
   var someInstance = {};
+  var firstItem = 0;
   // Use an object with numeric keys to store values
   var storage = {};
   // Implement the methods below
@@ -9,15 +10,18 @@ var Queue = function() {
     size++;
   };
   someInstance.dequeue = function() {
-    if (size > 0) {
-      size--;
-      var bottomItem = storage[size];
-      delete storage[size];
+    if (size > firstItem) {
+      var topItem = storage[firstItem];
+      delete storage[firstItem];
+      firstItem++
       return topItem;
     }
   };
   someInstance.size = function() {
-    return size;
+    if (size <= 0) {
+      return 0;
+    }
+    return size - firstItem;
   };
   return someInstance;
 };
