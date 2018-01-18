@@ -1,5 +1,6 @@
 var Queue = function() {
   var size = 0;
+  var firstItem = 0;
   var someInstance = {};
   var firstItem = 0;
   // Use an object with numeric keys to store values

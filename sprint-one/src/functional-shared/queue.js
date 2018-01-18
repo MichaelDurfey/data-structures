@@ -18,15 +18,12 @@ var Queue = function() {
 var queueMethods = {
 
   enqueue: function(value) {
-console.log(this)
     this.storage[this.count] = value;
     this.count += 1;
   },
 
   dequeue: function() {
     if (this.count > this.firstValue) {
-
-      console.log("storage", this.storage);
       let oldestValue = this.storage[this.firstValue];
       delete this.storage[this.firstValue];
       this.firstValue++;
