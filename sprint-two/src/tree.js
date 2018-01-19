@@ -38,9 +38,6 @@ var treeMethods = {
     return flag;
   } //END CONTAINS;
 };
-
-let tree = Tree();
-console.log(tree.addChild(5));
 /*
 tree.addChild(5);
 tree.addChild(6);
