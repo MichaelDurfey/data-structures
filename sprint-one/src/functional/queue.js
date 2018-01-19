@@ -14,7 +14,7 @@ var Queue = function() {
     if (size > firstItem) {
       var topItem = storage[firstItem];
       delete storage[firstItem];
-      firstItem++
+      firstItem++;
       return topItem;
     }
   };
