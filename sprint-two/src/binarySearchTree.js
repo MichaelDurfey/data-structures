@@ -28,36 +28,51 @@ var binaryMethods = {
   insert: function(value) {
     var compareValue = function(current) {
       // -------------Search Left -------------
-      if (current.value && current.value < value) {
+      if (current.value && current.value > value) {
         //compare current value to parent value;
-        if (!this.isEmpty(current.left)) {
-          for (let i in current.left) {
-            compareValue(current.left[i]);
-          }
+        if (!current.isEmpty(current.left)) {
+          compareValue(current.left);
         } else {
           current.left = BinarySearchTree(value);
         }
         //if searchFunction(current.left) 
-      } else if (current.value && current.value > value) {
+      } else if (current.value && current.value < value) {
         //searchRight
-        if (!this.isEmpty(current.right)) {
-          for (let i in current.right) {
-            compareValue(current.right[i]);
-          }
+        if (!current.isEmpty(current.right)) {
+          compareValue(current.right);
         } else {
           current.right = BinarySearchTree(value);
         }       
-      } 
-      console.log(this);
-    }.bind(this);
+      }
+    };
     compareValue(this);
   }, 
-  contain: function() {
-    
+  
+  contains: function(value) {
+    return function searchValue(current){
+      if (current.value === value){
+        return true;
+      } else if (current.value && current.value > value){
+        if (searchValue(current.left)) {
+          return true;
+        }
+      } else if (current.value && current.value < value){
+        if (searchValue(current.right)){
+          return true;
+        }
+      }
+      return false;
+    }(this);
   },
-  depthFirstLog: function() {
+  
+  depthFirstLog: function(func) {
+    
+    for (let x in this){
+      console.log(this[x])
+    }
     
   }
+  
 };
 
 
