@@ -49,29 +49,35 @@ var binaryMethods = {
   }, 
   
   contains: function(value) {
-    return function searchValue(current){
-      if (current.value === value){
+    return function searchValue(current) {
+      if (current.value === value) {
         return true;
-      } else if (current.value && current.value > value){
+      } else if (current.value && current.value > value) {
         if (searchValue(current.left)) {
           return true;
         }
-      } else if (current.value && current.value < value){
-        if (searchValue(current.right)){
+      } else if (current.value && current.value < value) {
+        if (searchValue(current.right)) {
           return true;
         }
       }
       return false;
     }(this);
-  },
+  }, 
   
   depthFirstLog: function(func) {
-    
-    for (let x in this){
-      console.log(this[x])
-    }
-    
-  }
+    (function depthValue(current) {
+      if (current.value) {
+        func(current.value);
+      }
+      if (!current.isEmpty(current.left)) {
+        depthValue(current.left);
+      }
+      if (!current.isEmpty(current.right)) {
+        depthValue(current.right);
+      }
+    }(this));
+  } // END DEPTH LOG
   
 };
 
