@@ -9,47 +9,53 @@ var extend = function(to, from) {
 var BinarySearchTree = function(value) {
   let newTree = {};
   newTree.value = value;
-  newTree.left = [];
-  newTree.right = [];
+  newTree.left = {};
+  newTree.right = {};
   extend(newTree, binaryMethods);
   return newTree;
 };
 
 var binaryMethods = {
+  isEmpty: function(obj) {
+    for (var prop in obj) {
+      if (obj.hasOwnProperty(prop)) {
+        return false;
+      }
+    }
+    return true;
+  },
+  
   insert: function(value) {
     var compareValue = function(current) {
       // -------------Search Left -------------
       if (current.value && current.value < value) {
         //compare current value to parent value;
-        if (current.left.length > 0) {
-          for (let i = 0; i < current.left.length; i++) {
+        if (!this.isEmpty(current.left)) {
+          for (let i in current.left) {
             compareValue(current.left[i]);
           }
         } else {
-          current.left.push(BinarySearchTree(value));
+          current.left = BinarySearchTree(value);
         }
         //if searchFunction(current.left) 
       } else if (current.value && current.value > value) {
         //searchRight
-        if (current.right.length > 0) {
-          for (let i = 0; i < current.right.length; i++) {
+        if (!this.isEmpty(current.right)) {
+          for (let i in current.right) {
             compareValue(current.right[i]);
           }
         } else {
-          current.right.push(BinarySearchTree(value));
+          current.right = BinarySearchTree(value);
         }       
       } 
-      // else {
-      //   current.right.push(BinarySearchTree(value));
-      // }
       console.log(this);
     }.bind(this);
     compareValue(this);
   }, 
-  contain: function(){
+  contain: function() {
     
   },
-  depthFirstLog: function(){
+  depthFirstLog: function() {
     
   }
 };
