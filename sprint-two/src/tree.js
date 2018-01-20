@@ -33,7 +33,7 @@ var treeMethods = {
           }
         }
       }
-    }
+    };
     searchChild(this);
     return flag;
   } //END CONTAINS;

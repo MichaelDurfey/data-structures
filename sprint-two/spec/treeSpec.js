@@ -6,7 +6,7 @@ describe('tree', function() {
   });
 
   it('should have methods named "addChild" and "contains", and a property named "value"', function() {
-    expect(Tree().addChild).to.be.a('function');
+    expect(tree.addChild).to.be.a('function');
     expect(tree.contains).to.be.a('function');
     expect(tree.hasOwnProperty('value')).to.equal(true);
   });
@@ -22,7 +22,6 @@ describe('tree', function() {
   });
 
   it('should return false for a value that was not added', function() {
-    Tree();
     tree.addChild(5);
     expect(tree.contains(6)).to.equal(false);
   });
