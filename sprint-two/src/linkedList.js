@@ -30,46 +30,57 @@ var LinkedList = function() {
   // };
   list.contains = function(target) {
     let i = 0;
-    var temp = list.head;
+    var temp = list;
     var flag = false;
     
-    while (i <= list.length) {
-      if (!temp) {
-        break;
+    while (temp) {
+      if ('head' in temp) {
+        temp = list.head;
       }
       if (temp.value === target) {
         flag = true;
       }
-      temp = list.head.next;
+      temp = temp.next;
       i++;
     }
     return flag;
   };
  
-  // list.insert = function(value, target) {
+  list.insert = function(value, target) {
+    if (target >= list.length) {
+      list.addToTail(value);
+    }
+    var value = Node(value);
+    let i = 0;
+    var temp = list;
+    var prev; 
     
-  //   let i = 0;
-  //   var temp = list.head;
-  //   var flag = false;
-    
-  //   while (i <= list.length) {
-  //     if (!temp) {
-  //       break;
-  //     }
-  //     if (i === target) {
-  //       if (list.length > 2) {
-  //         value.next = temp.next;
-  //         temp.next = value;
-  //       } else {
-          
-  //       }
-  //     }
-  //     console.log(temp);
-  //     temp = list.head.next;
-  //     i++;
-  //   }
-  //   return list;
-  // };
+    while (temp) {
+      //check if head property has been evaluated
+      if (temp.hasOwnProperty('head')) {
+        prev = list.head;
+        temp = list.head;
+      }
+      //check if index === target
+      if (i === target) {
+        if (target === 0) {
+          value.next = list.head.next;   
+          list.head = value;
+          break;
+        }
+        value.next = temp;
+        prev.next = value;
+        break;
+      }
+      //set previous to current temp value;
+      prev = temp;
+      //set temp to next property of current item
+      temp = temp.next;
+      //increment i
+      i++;
+    }
+    return list;
+  };
 
   return list;
 };

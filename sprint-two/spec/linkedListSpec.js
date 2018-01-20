@@ -51,12 +51,31 @@ describe('linkedList', function() {
     expect(linkedList.contains(4)).to.equal(false);
   });
   
-  // it('it should insert a value after a specified target', function() {
-  //   linkedList.addToTail(4);
-  //   linkedList.addToTail(5);
-  //   linkedList.insert(3, 2);
-  //   expect(linkedList.contains(3).to.equal(true));
-  // });
+  it('it should insert a value after a specified target', function() {
+    linkedList.addToTail(4);
+    linkedList.addToTail(5);
+    linkedList.addToTail(2);
+    linkedList.insert(3, 2);
+    expect(linkedList.contains(3)).to.equal(true);
+  });
+
+  it ('if insert target is 0, it should insert a value on the head', function() {
+    linkedList.addToTail(4);
+    linkedList.addToTail(5);
+    linkedList.addToTail(2);
+    linkedList.insert(3, 2);
+    linkedList.insert(9, 0)
+    expect(linkedList.contains(9)).to.equal(true);
+  });
+
+  it ('if insert target is greater than or equal to length, it should insert a value on the tail', function() {
+    linkedList.addToTail(4);
+    linkedList.addToTail(5);
+    linkedList.addToTail(2);
+    linkedList.insert(3, 2);
+    linkedList.insert(9, 0)
+    linkedList.insert(7, 10)
+  });
 
   // add more tests here to test the functionality of linkedList
 });

@@ -78,7 +78,6 @@ var binaryMethods = {
       }
     }(this));
   } // END DEPTH LOG
-  
 };
 
 
