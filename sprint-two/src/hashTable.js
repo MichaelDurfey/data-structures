@@ -32,6 +32,7 @@ HashTable.prototype.retrieve = function(k) {
       }
     }
   }
+console.log(this)
   return;
 };
 
@@ -46,7 +47,7 @@ HashTable.prototype.remove = function(k) {
     }
   } else {
     return;
-  }
+  } 
 };
 
 
