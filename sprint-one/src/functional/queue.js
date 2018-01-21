@@ -17,9 +17,6 @@ var Queue = function() {
     }
   };
   someInstance.size = function() {
-    if (end <= 0) {
-      return 0;
-    }
     return end - start;
   };
   return someInstance;
