@@ -28,6 +28,7 @@ var LinkedList = function() {
   //   return list.head;
   //   // list.length--;
   // };
+  
   list.contains = function(target) {
     let i = 0;
     var temp = list;
@@ -46,6 +47,7 @@ var LinkedList = function() {
     return flag;
   };
  
+  //Linear time complexity because it touches each node in list to insert something.
   list.insert = function(value, target) {
     if (target >= list.length) {
       list.addToTail(value);
@@ -54,7 +56,7 @@ var LinkedList = function() {
     let i = 0;
     var temp = list;
     var prev; 
-    
+        
     while (temp) {
       //check if head property has been evaluated
       if (temp.hasOwnProperty('head')) {
@@ -94,11 +96,6 @@ var Node = function(value) {
   return node;
 };
 
-/*
- linkedList.addToTail(4);
-    linkedList.addToTail(5);
-    expect(linkedList.head.value).to.equal(4);
-*/
 /*
  * Complexity: What is the time complexity of the above functions?
  */
