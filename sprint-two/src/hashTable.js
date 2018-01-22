@@ -19,7 +19,7 @@ HashTable.prototype.insert = function(k, v) {
         bucket[i][1] = v;
       } else {
         bucket.push(tuple);
-        this.count++;
+    this.count++
       }
     }
   }
@@ -79,21 +79,22 @@ HashTable.prototype.resize = function() {
     //for all newitems, iterate over each and call this.insert using bind method
     newStorage.forEach( function(item) {
       this.insert(item[0], item[1]);
-      this.count++;
     }.bind(this));
   }.bind(this); // END DOUBLE HASH
 
-  console.log(100 * (this.count / this._limit), 100 * (this.count / this._limit) );
-  if ( 100 * (this.count / this._limit) > 85) {
-    console.log('double', this._limit);
-    this._limit = this._limit * 2;
-    doubleHash();
-  } 
-  // else if (100 * (this.count / this._limit) < 33 && this.count >= 1 && this._limit > 8) {
-  //   console.log("min", this._limit / this.count);
-  //   this._limit = (this._limit / 2);
-  //   doubleHash();
-  // }
+  HashTable.prototype.checkRatio = function() {
+    if ( 100 * (this.count / this._limit) >= 75) {
+      console.log('double', this._limit / this.count);
+      this._limit = this._limit * 2;
+      doubleHash();
+    } else if (100 * (this.count / this._limit) <= 25 && this.count >= 1 && this._limit > 8) {
+      console.log('min', this.count / this._limit);
+      this._limit = (this._limit / 2);
+      doubleHash();
+    }
+  };
+
+  // console.log(100 * (this.count / this._limit), 100 * (this.count / this._limit) );
 };
 
 
